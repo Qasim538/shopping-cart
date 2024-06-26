@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <h3>${product.title}</h3>
             <p>Price: $${product.price.toFixed(2)}</p>
             <button class="add-to-cart">Add to Cart</button>
-            <h5>Rating: ${product.rating}</h5>
+            <h4>${starRating(product.rating)}</h4>
           </div>
         `;
   
@@ -51,6 +51,19 @@ document.addEventListener("DOMContentLoaded", () => {
   
         productList.appendChild(productElement);
       });
+    }
+
+     // Start rating Function
+
+     function starRating(rating) {
+      const fullStar = '★'
+      const emptyStar = '☆'
+      let starHTML = ''
+      for ( let i = 0; i < 5; i++) {
+        starHTML += i < rating ? fullStar : emptyStar
+      }
+      return `<span class="stars">${starHTML}</span>`;
+
     }
   
     // Function to add product to cart
@@ -69,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem("cart", JSON.stringify(cart)); // Save cart to local storage
   
       // Show alert box
-      showAlert("Item has been added, please continue shopping");
+      showAlert("Item has been added.");
     }
   
     // Function to update cart count in the header

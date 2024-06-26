@@ -17,31 +17,26 @@ document.addEventListener("DOMContentLoaded", () => {
       cartItem.classList.add("cart-item");
 
       cartItem.innerHTML = `
-                <img src="${item.image}" alt="${item.name}">
-                <div class="cart-item-details">
-                    <h4>${item.name}</h4>
-                    <p>$${item.price.toFixed(2)}</p>
-                </div>
-                
-                <div class="cart-item-controls">
-                    <input type="number" value="${
-                      item.quantity
-                    }" min="1" class="quantity-input">
-                    <button class="remove-item">Remove</button>
-                </div>
-                <p class="cart-item-total">$${itemTotal.toFixed(2)}</p>
-            `;
+        <img src="${item.image}" alt="${item.name}">
+        <div class="cart-item-details">
+          <h4>${item.name}</h4>
+          <p>$${item.price.toFixed(2)}</p>
+        </div>
+        <div class="cart-item-controls">
+          <input type="number" value="${item.quantity}" min="1" class="quantity-input">
+          <button class="remove-item">Remove</button>
+        </div>
+        <p class="cart-item-total">$${itemTotal.toFixed(2)}</p>
+      `;
 
       // Event listener for quantity input change
-      cartItem
-        .querySelector(".quantity-input")
-        .addEventListener("change", (event) => {
-          const newQuantity = parseInt(event.target.value);
-          if (newQuantity > 0) {
-            item.quantity = newQuantity;
-            updateCart();
-          }
-        });
+      cartItem.querySelector(".quantity-input").addEventListener("change", (event) => {
+        const newQuantity = parseInt(event.target.value);
+        if (newQuantity > 0) {
+          item.quantity = newQuantity;
+          updateCart();
+        }
+      });
 
       // Event listener for remove button
       cartItem.querySelector(".remove-item").addEventListener("click", () => {
@@ -61,5 +56,3 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initial cart update
   updateCart();
 });
-
-
